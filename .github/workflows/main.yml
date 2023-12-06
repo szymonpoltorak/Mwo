@@ -48,6 +48,7 @@ jobs:
                 run: npm ci
 
             -   uses: browser-actions/setup-chrome@latest
+            - run: chrome --version
 
             -   name: Add executability to file
                 run: chmod +x mwo-backend/gradlew
