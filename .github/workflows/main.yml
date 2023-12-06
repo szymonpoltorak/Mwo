@@ -43,12 +43,12 @@ jobs:
 
             -   name: Build backend with Gradle
                 working-directory: mwo-backend
-                run: ./gradlew build
-                env:
-                    - POSTGRES_USER=postgres
-                    - BROWSER=chrome
-                    - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5000/cinema
-                    - POSTGRES_PASSWORD=postgres
+                run: |
+                    POSTGRES_USER=postgres
+                    BROWSER=chrome
+                    SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5000/cinema
+                    POSTGRES_PASSWORD=postgres
+                    ./gradlew build
 
 #            -   name: Build Angular app and run Selenium tests
 #                working-directory: mwo-frontend
