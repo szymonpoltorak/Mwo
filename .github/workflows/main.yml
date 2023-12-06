@@ -47,8 +47,8 @@ jobs:
                     FRONTEND_URL: http://localhost:4200
                 run: npm ci
 
-            - uses: browser-actions/setup-chrome@latest
-              run: chrome --version
+            -   uses: browser-actions/setup-chrome@latest
+                run: chrome --version
 
             -   name: Add executability to file
                 run: chmod +x mwo-backend/gradlew
