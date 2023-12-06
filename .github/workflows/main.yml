@@ -40,12 +40,15 @@ jobs:
                 working-directory: mwo-frontend
                 env:
                     SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5000/mwo
-                    BROWSER: firefox
+                    BROWSER: chrome
                     POSTGRES_USER: postgres
                     POSTGRES_PASSWORD: none
                     POSTGRES_DB: mwo
                     FRONTEND_URL: http://localhost:4200
                 run: npm ci
+
+            - uses: browser-actions/setup-chrome@latest
+              run: chrome --version
 
             -   name: Add executability to file
                 run: chmod +x mwo-backend/gradlew
@@ -54,7 +57,7 @@ jobs:
                 working-directory: mwo-frontend
                 env:
                     SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5000/mwo
-                    BROWSER: firefox
+                    BROWSER: chrome
                     POSTGRES_USER: postgres
                     POSTGRES_PASSWORD: none
                     POSTGRES_DB: mwo
