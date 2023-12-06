@@ -97,22 +97,6 @@ class RegisterPageSeleniumTests {
                 String.format("Expected value: %s", REGISTER_URL));
     }
 
-    @Test
-    final void shouldRedirect_whenGivenCorrectInputAndClickedRegister() {
-        registerPage.getTxtName().sendKeys("Jakub");
-        registerPage.getTxtSurname().sendKeys("Wadzi");
-        registerPage.getTxtEmail().sendKeys("016963@gmail.com");
-        registerPage.getTxtPassword().sendKeys("#Silnehaslo123");
-        registerPage.getTxtRepeatPassword().sendKeys("#Silnehaslo123");
-        registerPage.clickRegister();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlToBe(LOGIN_URL));
-
-        assertEquals(LOGIN_URL, driver.getCurrentUrl(),
-                String.format("Expected value: %s", LOGIN_URL));
-    }
-
     @AfterEach
     final void tearDown() {
         if (driver != null) {

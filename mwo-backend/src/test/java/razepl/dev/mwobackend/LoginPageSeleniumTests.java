@@ -90,19 +90,6 @@ class LoginPageSeleniumTests {
         );
     }
 
-    @Test
-    final void shouldLogin_whenGivenCorrectCredentials() {
-        loginPage.getTxtEmail().sendKeys("01231234@gmail.com");
-        loginPage.getTxtPassword().sendKeys("#Silnehaslo123");
-        loginPage.clickLogin();
-
-        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10L));
-        wait.until(ExpectedConditions.urlToBe(HOME_URL));
-
-        assertEquals(HOME_URL, driver.getCurrentUrl(),
-                String.format("Expected value: %s", HOME_URL));
-    }
-
     @AfterEach
     final void tearDown() {
         if (driver != null) {

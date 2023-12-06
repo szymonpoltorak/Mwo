@@ -60,6 +60,10 @@ jobs:
                     POSTGRES_DB: mwo
                     FRONTEND_URL: http://localhost:4200
                 run: npm run test-selenium
+            
+            -   name: Cat report
+                working-directory: mwo-backend
+                run: cat build/reports/tests/test/classes/razepl.dev.mwobackend.LoginPageSeleniumTests.html
 
 #            -   name: Creating bug AZDO tasks with failed selenium tests
 #                uses: stefanstranger/azuredevops-bug-action@1.1
