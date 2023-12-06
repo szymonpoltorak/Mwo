@@ -48,7 +48,7 @@ export class HomeComponent implements SideMenuActions, OnInit {
     }
 
     ngOnInit(): void {
-        this.headerName = this.utilService.getKeyValuePairFromStorage(StorageKeys.USERNAME);
+        this.headerName = this.utilService.getKeyValuePairFromStorage(StorageKeys.USERNAME).split(" ")[1];
     }
 
     removeBookFromList(event: Book): void {
