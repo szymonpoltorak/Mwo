@@ -48,6 +48,7 @@ jobs:
                 run: npm ci
 
             -   name: Build Angular app and run Selenium tests
+                working-directory: mwo-frontend
                 env:
                     SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5000/mwo
                     BROWSER: chrome
