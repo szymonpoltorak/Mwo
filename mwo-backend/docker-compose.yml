@@ -1,0 +1,26 @@
+version: "3.1"
+
+services:
+    mwo-postgres:
+        container_name: mwo-postgres
+        image: postgres:alpine
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=none
+            - POSTGRES_DB=mwo
+        ports:
+            - "5000:5432"
+    mwo-backend:
+        container_name: mwo-backend
+        image: mwo-backend
+        depends_on:
+            - mwo-postgres
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=none
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://mwo-postgres:5432/mwo
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
