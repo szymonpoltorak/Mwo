@@ -40,7 +40,7 @@ jobs:
                 working-directory: mwo-frontend
                 env:
                     SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5000/mwo
-                    BROWSER: chrome
+                    BROWSER: firefox
                     POSTGRES_USER: postgres
                     POSTGRES_PASSWORD: none
                     POSTGRES_DB: mwo
@@ -54,7 +54,7 @@ jobs:
                 working-directory: mwo-frontend
                 env:
                     SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5000/mwo
-                    BROWSER: chrome
+                    BROWSER: firefox
                     POSTGRES_USER: postgres
                     POSTGRES_PASSWORD: none
                     POSTGRES_DB: mwo
