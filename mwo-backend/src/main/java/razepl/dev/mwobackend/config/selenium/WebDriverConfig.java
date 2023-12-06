@@ -31,6 +31,7 @@ public class WebDriverConfig {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless");
                 chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.addArguments("--no-sandbox");
                 yield new ChromeDriver();
             }
             case "edge" -> {
