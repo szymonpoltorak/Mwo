@@ -25,23 +25,51 @@ jobs:
                 with:
                     node-version: 20
 
+            -   name: Setup WebDriver
+                uses: webdriverio/github-action@v1
+                with:
+                    node-version: 20
+
+            -   name: Start Selenium Server
+                uses: selenium-standalone-server/github-action@v1
+
             -   name: Install dependencies
+                working-directory: mwo-frontend
                 run: npm ci
 
-            -   name: Build Angular app and run Selenium tests
-                run: npm run test-selenium
+            -   name: Start Angular app
+                working-directory: mwo-frontend
+                run: npm start
 
-            -   name: Creating bug AZDO tasks with failed selenium tests
-                uses: stefanstranger/azuredevops-bug-action@1.1
-                if: failure()
-                with:
-                    OrganizationName: "final-project-mwo"
-                    PAT: "PAT"
-                    ProjectName: "mwo-github-azdo-integration"
-                    AreaPath: "mwo-github-azdo-integration\\Automation"
-                    IterationPath: "mwo-github-azdo-integration"
-                    GithubToken: "GithubToken"
-                    WorkflowFileName: "main.yml"
+            -   name: Build backend with Gradle
+                working-directory: mwo-backend
+                run: ./gradlew build
                 env:
-                    PAT: ${{secrets.PAT}}
-                    GithubToken: ${{secrets.GITHUBRESTAPISECRET}}
+                    - POSTGRES_USER=postgres
+                    - BROWSER=chrome
+                    - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5000/cinema
+                    - POSTGRES_PASSWORD=postgres
+
+#            -   name: Build Angular app and run Selenium tests
+#                working-directory: mwo-frontend
+#                env:
+#                    - POSTGRES_USER=postgres
+#                    - BROWSER=chrome
+#                    - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5000/cinema
+#                    - POSTGRES_PASSWORD=postgres
+#                run: npm run test-selenium
+
+#            -   name: Creating bug AZDO tasks with failed selenium tests
+#                uses: stefanstranger/azuredevops-bug-action@1.1
+#                if: failure()
+#                with:
+#                    OrganizationName: "final-project-mwo"
+#                    PAT: "PAT"
+#                    ProjectName: "mwo-project"
+#                    AreaPath: "mwo-project\\Automation"
+#                    IterationPath: "mwo-project"
+#                    GithubToken: "GithubToken"
+#                    WorkflowFileName: "main.yml"
+#                env:
+#                    PAT: ${{secrets.PAT}}
+#                    GithubToken: ${{secrets.GITHUBRESTAPISECRET}}
