@@ -2,9 +2,9 @@ name: Studies project CI/CD integrated with azdo
 
 on:
     push:
-        branches: [ "master" ]
+        branches: [ "main" ]
     pull_request:
-        branches: [ "master" ]
+        branches: [ "main" ]
 
 jobs:
     build:
