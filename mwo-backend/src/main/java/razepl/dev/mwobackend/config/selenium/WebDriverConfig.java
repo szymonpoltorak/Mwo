@@ -54,9 +54,9 @@ public class WebDriverConfig {
                 yield new FirefoxDriver();
             }
         };
-        driver.manage()
-                .window()
-                .maximize();
+//        driver.manage()
+//                .window()
+//                .maximize();
         return driver;
     }
 
