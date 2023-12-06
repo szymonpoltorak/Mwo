@@ -14,7 +14,7 @@ import { take } from "rxjs";
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements SideMenuActions, OnInit {
-    protected headerName: string = ""; 
+    protected headerName: string = "";
     protected books: Book[] = [];
     protected readonly bookFormControl: FormControl = new FormControl<string>("", [
         Validators.required
