@@ -10,6 +10,17 @@ jobs:
     build:
         runs-on: ubuntu-latest
 
+        services:
+            note-postgres:
+                image: postgres:alpine
+                env:
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: none
+                    POSTGRES_DB: mwo
+                ports:
+                    - "5000:5432"
+                options: --name mwo
+
         steps:
             -   name: Run Checkout step
                 uses: actions/checkout@v3
@@ -35,20 +46,24 @@ jobs:
 
             -   name: Install dependencies
                 working-directory: mwo-frontend
+                env:
+                    SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5000/mwo
+                    BROWSER: chrome
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: none
+                    POSTGRES_DB: mwo
+                    FRONTEND_URL: http://localhost:4200
                 run: npm ci
 
-            -   name: Start Angular app
-                working-directory: mwo-frontend
-                run: npm start
-
-            -   name: Build backend with Gradle
-                working-directory: mwo-backend
-                run: |
-                    POSTGRES_USER=postgres
-                    BROWSER=chrome
-                    SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5000/cinema
-                    POSTGRES_PASSWORD=postgres
-                    ./gradlew build
+            -   name: Build Angular app and run Selenium tests
+                env:
+                    SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5000/mwo
+                    BROWSER: chrome
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: none
+                    POSTGRES_DB: mwo
+                    FRONTEND_URL: http://localhost:4200
+                run: npm run test-selenium
 
 #            -   name: Build Angular app and run Selenium tests
 #                working-directory: mwo-frontend
