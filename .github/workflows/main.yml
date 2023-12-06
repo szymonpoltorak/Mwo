@@ -58,15 +58,6 @@ jobs:
                     FRONTEND_URL: http://localhost:4200
                 run: npm run test-selenium
 
-#            -   name: Build Angular app and run Selenium tests
-#                working-directory: mwo-frontend
-#                env:
-#                    - POSTGRES_USER=postgres
-#                    - BROWSER=chrome
-#                    - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5000/cinema
-#                    - POSTGRES_PASSWORD=postgres
-#                run: npm run test-selenium
-
 #            -   name: Creating bug AZDO tasks with failed selenium tests
 #                uses: stefanstranger/azuredevops-bug-action@1.1
 #                if: failure()
