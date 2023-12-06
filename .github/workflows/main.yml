@@ -63,6 +63,7 @@ jobs:
             
             -   name: Cat report
                 working-directory: mwo-backend
+                if: always()
                 run: cat build/reports/tests/test/classes/razepl.dev.mwobackend.LoginPageSeleniumTests.html
 
 #            -   name: Creating bug AZDO tasks with failed selenium tests
