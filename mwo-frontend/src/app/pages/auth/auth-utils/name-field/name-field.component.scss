@@ -1,0 +1,26 @@
+.full-width {
+  width: 100%;
+  margin: 5px;
+}
+
+
+@media screen and (max-width: 425px) {
+  .full-width {
+    width: 11.6em;
+    margin: 5px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .full-width {
+    width: 10em;
+    margin: 5px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .full-width {
+    width: 8.3em;
+    margin: 5px;
+  }
+}
