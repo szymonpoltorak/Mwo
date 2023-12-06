@@ -1,0 +1,54 @@
+<mat-drawer-container autosize class="home-container">
+    <mat-drawer #drawer class="sidenav" mode="push">
+        <h1>Menu</h1>
+
+        <mat-divider></mat-divider>
+
+        <section class="button-column">
+            <button (click)="logoutUser()" color="primary" class="menu-option" extended mat-fab>
+                <mat-icon>logout</mat-icon>
+                Logout
+            </button>
+        </section>
+    </mat-drawer>
+
+    <mat-toolbar class="navbar" color="primary">
+        <button (click)="drawer.toggle()" aria-label="Menu button" class="menu-icon" mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span>ToRead</span>
+    </mat-toolbar>
+
+    <div class="center-container">
+        <mat-card class="books-container">
+            <div class="header-container">
+                <h1 class="main-header">Welcome {{ headerName }}</h1>
+
+                <h4 class="center">What do you want to read?</h4>
+            </div>
+
+            <mat-divider class="input-books-divider"></mat-divider>
+
+            <form class="book-input-form" (ngSubmit)="addNewBook()">
+                <mat-form-field class="book-input">
+                    <mat-label>Enter your book name</mat-label>
+
+                    <input [formControl]="bookFormControl" matInput placeholder="Example book name">
+
+                    <mat-hint>Your next book to read</mat-hint>
+                </mat-form-field>
+
+                <button mat-mini-fab color="primary" type="submit">
+                    <mat-icon>done</mat-icon>
+                </button>
+            </form>
+
+            <mat-divider class="input-books-divider" *ngIf="books.length > 0"></mat-divider>
+
+            <mat-list class="list-container">
+                <app-book (bookIsRead)="removeBookFromList($event)" *ngFor="let book of books" [book]="book"></app-book>
+            </mat-list>
+        </mat-card>
+    </div>
+</mat-drawer-container>

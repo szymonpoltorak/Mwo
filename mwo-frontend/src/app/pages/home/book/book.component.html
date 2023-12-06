@@ -1,0 +1,9 @@
+<div class="book-container">
+    <span class="book-name">{{ book.name }}</span>
+
+    <button mat-mini-fab color="warn" (click)="bookIsRead.emit(book)">
+        <mat-icon>delete</mat-icon>
+    </button>
+</div>
+
+<mat-divider class="input-books-divider"></mat-divider>

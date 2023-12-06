@@ -1,0 +1,53 @@
+@import "sidebar";
+
+.books-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    width: 800px;
+    height: 700px;
+    padding: 5em;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.main-header {
+    display: flex;
+    justify-content: center;
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.book-input-form {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.input-books-divider {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.book-input {
+    width: 20em;
+}
+
+.profile-section-separator {
+    margin-bottom: 20px;
+}
+
+.profile-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}

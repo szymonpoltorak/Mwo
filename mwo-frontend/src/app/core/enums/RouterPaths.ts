@@ -8,4 +8,5 @@ export const enum RouterPaths {
     HOME_LOGIN_PATH = "/home",
     AUTH_PATH = "auth",
     ERROR_PATH = "**",
+    HOME_PATH = "home",
 }

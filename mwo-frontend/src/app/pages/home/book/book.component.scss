@@ -1,0 +1,14 @@
+@import "../home.component";
+
+.book-container {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2em;
+}
+
+.book-name {
+    font-weight: bold;
+    text-transform: capitalize;
+}
