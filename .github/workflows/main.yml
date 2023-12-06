@@ -47,6 +47,9 @@ jobs:
                     FRONTEND_URL: http://localhost:4200
                 run: npm ci
 
+            -   name: Add executability to file
+                run: chmod +x mwo-backend/gradlew
+
             -   name: Build Angular app and run Selenium tests
                 working-directory: mwo-frontend
                 env:
