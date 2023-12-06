@@ -32,6 +32,7 @@ public class WebDriverConfig {
                 chromeOptions.addArguments("--headless");
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--disable-dev-shm-usage");
                 yield new ChromeDriver();
             }
             case "edge" -> {
