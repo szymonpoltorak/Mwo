@@ -5,6 +5,8 @@ import { Book } from "@core/data/home/Book";
 import { FormControl, Validators } from "@angular/forms";
 import { UtilService } from "@core/services/utils/util.service";
 import { StorageKeys } from "@enums/auth/StorageKeys";
+import { HomeService } from "@core/services/home/home.service";
+import { take } from "rxjs";
 
 @Component({
     selector: 'app-home',
@@ -12,23 +14,15 @@ import { StorageKeys } from "@enums/auth/StorageKeys";
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements SideMenuActions, OnInit {
-    protected headerName: string = "";
-    protected books: Book[] = [{ name: '"The Lords Of The Rings", J.R.R Tolkien', bookId: 0 }];
+    protected headerName: string = ""; 
+    protected books: Book[] = [];
     protected readonly bookFormControl: FormControl = new FormControl<string>("", [
         Validators.required
     ]);
 
     constructor(private sideMenuService: SideMenuService,
+                private homeService: HomeService,
                 private utilService: UtilService) {
-    }
-
-    changeToCreateNoteView(): void {
-    }
-
-    changeToHomeView(): void {
-    }
-
-    changeToProfileView(): void {
     }
 
     logoutUser(): void {
@@ -41,19 +35,27 @@ export class HomeComponent implements SideMenuActions, OnInit {
         }
         const bookName: string = this.bookFormControl.value;
 
-        this.books.push({
-            bookId: this.books.length,
-            name: bookName
-        });
+        console.log(bookName);
+
+        this.homeService
+            .addNewBook(bookName)
+            .pipe(take(1))
+            .subscribe(book => this.books.push(book));
     }
 
     ngOnInit(): void {
         this.headerName = this.utilService.getKeyValuePairFromStorage(StorageKeys.USERNAME).split(" ")[1];
+        this.homeService
+            .getBooks()
+            .pipe(take(1))
+            .subscribe(books => this.books = books);
     }
 
     removeBookFromList(event: Book): void {
-        console.log(event);
-
         this.books = this.books.filter(book => book != event);
+        this.homeService
+            .deleteBook(event.bookId)
+            .pipe(take(1))
+            .subscribe();
     }
 }

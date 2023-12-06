@@ -7,8 +7,6 @@ public final class Matchers {
 
     public static final String AUTH_MATCHERS = "/api/auth/**";
 
-    public static final String OAUTH2_LOGIN = "/login/oauth2/**";
-
     private Matchers() {
     }
 }
