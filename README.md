@@ -211,18 +211,18 @@ jobs:
                     FRONTEND_URL: http://localhost:4200
                 run: npm run test-selenium
 
-           -   name: Creating bug AZDO tasks with failed selenium tests
-               uses: stefanstranger/azuredevops-bug-action@1.1
-               if: failure()
-               with:
-                   OrganizationName: "mwo-project"
-                   PAT: "PAT"
-                   ProjectName: "mwo-lab5"
-                   AreaPath: "mwo-lab5\\Automation"
-                   IterationPath: "mwo-lab5"
-                   GithubToken: "GithubToken"
-                   WorkflowFileName: "main.yml"
-               env:
-                   PAT: ${{secrets.PAT}}
-                   GithubToken: ${{secrets.API_GITHUB_SECRET}}
+            -   uses: stefanstranger/azuredevops-bug-action@1.1
+                name: Create Bug in Azure DevOps
+                if: failure()
+                with:
+                    OrganizationName: "mwo-project"
+                    PAT: "PAT"
+                    ProjectName: "mwo-lab5"
+                    AreaPath: "mwo-lab5\\Automation"
+                    IterationPath: "mwo-lab5"
+                    GithubToken: "GithubToken"
+                    WorkflowFileName: "main.yml"
+                env:
+                    PAT: ${{secrets.PAT}}
+                    GithubToken: ${{secrets.API_GITHUB_SECRET}}
 ```
