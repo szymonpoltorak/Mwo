@@ -108,6 +108,13 @@ jobs:
                 run: npm run test-selenium
 ```
 
+Poprzez wywołanie komendy `npm run test-selenium` uruchamiane są testy selenium. Komenda została zdefiniowana w pliku `package.json`.
+
+```json
+"test": "cd ../mwo-backend; ./gradlew test",
+"test-selenium": "npx start-test http://localhost:4200"
+```
+
 Wynik działania powyższego action:
 
 <div alignment="center">
@@ -227,3 +234,6 @@ jobs:
                     GithubToken: ${{secrets.API_GITHUB_SECRET}}
 ```
 
+## Demonstracja działania pipeline'u
+
+Film demonstrujący działanie pipeline'u od momentu uruchomienia do momentu dodania bug'a w azure dev opsie znajduje się w ścieżce `docs/mwo.mkv`.
