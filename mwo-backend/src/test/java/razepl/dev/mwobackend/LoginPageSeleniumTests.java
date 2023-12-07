@@ -39,7 +39,7 @@ class LoginPageSeleniumTests {
     @Test
     final void whenOnMainPage_CheckIfTitleIsCorrect() {
         String pageTitle = driver.getTitle();
-        String expected = "CinemaFrontend";
+        String expected = "ToRead";
 
         assertEquals(expected, pageTitle,
                 String.format("Expected value: %s", expected));
