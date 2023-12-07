@@ -64,10 +64,15 @@ jobs:
                     FRONTEND_URL: http://localhost:4200
                 run: npm run test-selenium
             
-            -   name: Cat report
+            -   name: Cat login report
                 working-directory: mwo-backend
                 if: always()
                 run: cat build/reports/tests/test/classes/razepl.dev.mwobackend.LoginPageSeleniumTests.html
+
+            -   name: Cat register report
+                working-directory: mwo-backend
+                if: always()
+                run: cat build/reports/tests/test/classes/razepl.dev.mwobackend.RegisterPageSeleniumTests.html
 
 #            -   name: Creating bug AZDO tasks with failed selenium tests
 #                uses: stefanstranger/azuredevops-bug-action@1.1

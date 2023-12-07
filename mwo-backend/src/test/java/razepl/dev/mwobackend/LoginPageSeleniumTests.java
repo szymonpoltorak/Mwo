@@ -28,13 +28,8 @@ import static razepl.dev.mwobackend.config.selenium.constants.PagesConstants.LOG
 import static razepl.dev.mwobackend.config.selenium.constants.PagesConstants.REGISTER_URL;
 
 @SpringBootTest
-@TestPropertySource(locations = "classpath:selenium-config.yml")
 class LoginPageSeleniumTests {
 
-    @Value("${browser}")
-    private String browser;
-//    @Autowired
-//    private WebDriverConfig webDriverConfig;
     private LoginPage loginPage;
     private WebDriver driver;
     private static final ChromeOptions chromeOptions = new ChromeOptions();
@@ -51,9 +46,6 @@ class LoginPageSeleniumTests {
         driver = new ChromeDriver(chromeOptions);
         driver.navigate().to("http://localhost:4200");
         loginPage = new LoginPage(driver);
-//        driver = webDriverConfig.setUpWebDriver(browser);
-//        driver.get(REGISTER_URL);
-//        registerPage = new RegisterPage(driver);
     }
 
     @Test
