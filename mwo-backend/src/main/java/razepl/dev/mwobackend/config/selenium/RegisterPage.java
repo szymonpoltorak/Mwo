@@ -18,15 +18,15 @@ public class RegisterPage {
         PageFactory.initElements(webDriver, this);
     }
 
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[1]/app-name-field[1]/mat-form-field/div[1]/div[2]/div/input")
+    @FindBy(xpath = "//*[@id=\"mat-input-2\"]")
     private WebElement txtName;
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[1]/app-name-field[2]/mat-form-field/div[1]/div[2]/div/input")
+    @FindBy(xpath = "//*[@id=\"mat-input-3\"]")
     private WebElement txtSurname;
     @FindBy(xpath = "/html/body/app-root/app-register/div/form/app-email-field/mat-form-field/div[1]/div[2]/div/input")
     private WebElement txtEmail;
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[2]/app-password-field[1]/mat-form-field/div[1]/div[2]/div/input")
+    @FindBy(xpath = "//*[@id=\"mat-input-5\"]")
     private WebElement txtPassword;
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[2]/app-password-field[2]/mat-form-field/div[1]/div[2]/div/input")
+    @FindBy(xpath = "//*[@id=\"mat-input-6\"]")
     private WebElement txtRepeatPassword;
 
     @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[3]/button[1]")
@@ -34,15 +34,15 @@ public class RegisterPage {
     @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[3]/button[2]")
     private WebElement lnkRegister;
 
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[1]/app-name-field[1]/mat-form-field/div[2]/div/mat-error")
+    @FindBy(xpath = "//*[@id=\"mat-mdc-error-2\"]")
     private WebElement nameErrorMsg;
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[1]/app-name-field[2]/mat-form-field/div[2]/div/mat-error")
+    @FindBy(xpath = "//*[@id=\"mat-mdc-error-3\"]")
     private WebElement surnameErrorMsg;
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/app-email-field/mat-form-field/div[2]/div/mat-error")
+    @FindBy(xpath = "//*[@id=\"mat-mdc-error-4\"]")
     private WebElement emailErrorMsg;
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[2]/app-password-field[1]/mat-form-field/div[2]/div/mat-error")
+    @FindBy(xpath = "//*[@id=\"mat-mdc-error-5\"]")
     private WebElement passwordErrorMsg;
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[2]/app-password-field[2]/mat-form-field/div[2]/div/mat-error")
+    @FindBy(xpath = "//*[@id=\"mat-mdc-error-6\"]")
     private WebElement repeatPasswordErrorMsg;
 
     public final void clickReturn(){
