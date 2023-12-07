@@ -1,9 +1,13 @@
 package razepl.dev.mwobackend;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +30,35 @@ class RegisterPageSeleniumTests {
 
     @Value("${browser}")
     private String browser;
-    @Autowired
-    private WebDriverConfig webDriverConfig;
+//    @Autowired
+//    private WebDriverConfig webDriverConfig;
     private RegisterPage registerPage;
     private WebDriver driver;
 
+    private static final ChromeOptions chromeOptions = new ChromeOptions();
+
+    @BeforeAll
+    static void setUpCrudAutomatedTests() {
+        WebDriverManager.chromedriver().setup();
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--disable-gpu");
+    }
+
     @BeforeEach
     final void setup() {
-        driver = webDriverConfig.setUpWebDriver(browser);
-        driver.get(REGISTER_URL);
+        driver = new ChromeDriver(chromeOptions);
+        driver.navigate().to("http://localhost:4200");
         registerPage = new RegisterPage(driver);
+//        driver = webDriverConfig.setUpWebDriver(browser);
+//        driver.get(REGISTER_URL);
+//        registerPage = new RegisterPage(driver);
+    }
+
+    @AfterEach
+    final void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     @Test
@@ -95,12 +118,5 @@ class RegisterPageSeleniumTests {
 
         assertEquals(REGISTER_URL, driver.getCurrentUrl(),
                 String.format("Expected value: %s", REGISTER_URL));
-    }
-
-    @AfterEach
-    final void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
 }

@@ -1,9 +1,13 @@
 package razepl.dev.mwobackend;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import razepl.dev.mwobackend.config.selenium.LoginPage;
+import razepl.dev.mwobackend.config.selenium.RegisterPage;
 import razepl.dev.mwobackend.config.selenium.WebDriverConfig;
 
 import java.time.Duration;
@@ -28,16 +33,27 @@ class LoginPageSeleniumTests {
 
     @Value("${browser}")
     private String browser;
-    @Autowired
-    private WebDriverConfig webDriverConfig;
+//    @Autowired
+//    private WebDriverConfig webDriverConfig;
     private LoginPage loginPage;
     private WebDriver driver;
+    private static final ChromeOptions chromeOptions = new ChromeOptions();
+
+    @BeforeAll
+    static void setUpCrudAutomatedTests() {
+        WebDriverManager.chromedriver().setup();
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--disable-gpu");
+    }
 
     @BeforeEach
     final void setup() {
-        driver = webDriverConfig.setUpWebDriver(browser);
-        driver.get(LOGIN_URL);
+        driver = new ChromeDriver(chromeOptions);
+        driver.navigate().to("http://localhost:4200");
         loginPage = new LoginPage(driver);
+//        driver = webDriverConfig.setUpWebDriver(browser);
+//        driver.get(REGISTER_URL);
+//        registerPage = new RegisterPage(driver);
     }
 
     @Test
