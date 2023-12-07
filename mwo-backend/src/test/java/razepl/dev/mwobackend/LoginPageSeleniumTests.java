@@ -8,23 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 import razepl.dev.mwobackend.config.selenium.LoginPage;
-import razepl.dev.mwobackend.config.selenium.RegisterPage;
-import razepl.dev.mwobackend.config.selenium.WebDriverConfig;
-
-import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static razepl.dev.mwobackend.config.selenium.constants.PagesConstants.HOME_URL;
-import static razepl.dev.mwobackend.config.selenium.constants.PagesConstants.LOGIN_URL;
 import static razepl.dev.mwobackend.config.selenium.constants.PagesConstants.REGISTER_URL;
 
 @SpringBootTest
