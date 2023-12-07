@@ -1,11 +1,13 @@
 package razepl.dev.mwobackend.config.selenium;
 
 import lombok.Getter;
+import lombok.experimental.Accessors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+@Accessors(fluent = true)
 @Getter
 public class RegisterPage {
 

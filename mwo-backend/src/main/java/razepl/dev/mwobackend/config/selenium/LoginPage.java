@@ -1,11 +1,13 @@
 package razepl.dev.mwobackend.config.selenium;
 
 import lombok.Getter;
+import lombok.experimental.Accessors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+@Accessors(fluent = true)
 @Getter
 public class LoginPage {
 
@@ -15,22 +17,22 @@ public class LoginPage {
         PageFactory.initElements(webDriver, this);
     }
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div/form/app-email-field/mat-form-field/div[1]/div[2]/div/input")
+    @FindBy(xpath = "/html/body/app-root/app-register/div/form/app-email-field/mat-form-field/div[1]/div[2]/div/input")
     private WebElement txtEmail;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div/form/app-password-field/mat-form-field/div[1]/div[2]/div/input")
+    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[2]/app-password-field[1]/mat-form-field/div[1]/div[2]/div/input")
     private WebElement txtPassword;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div/form/div/button[1]")
+    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[3]/button[2]")
     private WebElement lnkRegister;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div/form/div/button[2]")
+    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[3]/button[1]")
     private WebElement lnkLogin;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div/form/app-email-field/mat-form-field/div[2]/div/mat-error")
+    @FindBy(xpath = "/html/body/app-root/app-register/div/form/app-email-field/mat-form-field/div[2]/div/mat-error")
     private WebElement emailErrorMsg;
 
-    @FindBy(xpath = "/html/body/app-root/app-login/div/form/app-password-field/mat-form-field/div[2]/div/mat-error")
+    @FindBy(xpath = "/html/body/app-root/app-register/div/form/div[2]/app-password-field[1]/mat-form-field/div[2]/div/mat-error")
     private WebElement passwordErrorMsg;
 
     public final void clickRegister(){
