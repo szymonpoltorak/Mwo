@@ -1,0 +1,80 @@
+name: Studies project CI/CD integrated with azdo
+
+on:
+    push:
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        services:
+            note-postgres:
+                image: postgres:alpine
+                env:
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: none
+                    POSTGRES_DB: mwo
+                ports:
+                    - "5000:5432"
+                options: --name mwo
+
+        steps:
+            -   name: Run Checkout step
+                uses: actions/checkout@v3
+
+            -   name: Set up JDK 17
+                uses: actions/setup-java@v3
+                with:
+                    java-version: '17'
+                    distribution: 'temurin'
+
+            -   name: Set up nodejs
+                uses: actions/setup-node@v4
+                with:
+                    node-version: 20
+
+            -   name: Install dependencies
+                working-directory: mwo-frontend
+                env:
+                    SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5000/mwo
+                    BROWSER: chrome
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: none
+                    POSTGRES_DB: mwo
+                    FRONTEND_URL: http://localhost:4200
+                run: npm ci
+
+            -   uses: browser-actions/setup-chrome@latest
+            -   run: chrome --version
+
+            -   name: Add executability to file
+                run: chmod +x mwo-backend/gradlew
+
+            -   name: Build Angular app and run Selenium tests
+                working-directory: mwo-frontend
+                env:
+                    SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5000/mwo
+                    BROWSER: chrome
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: none
+                    POSTGRES_DB: mwo
+                    FRONTEND_URL: http://localhost:4200
+                run: npm run test-selenium
+
+            -   uses: stefanstranger/azuredevops-bug-action@1.1
+                name: Create Bug in Azure DevOps
+                if: failure()
+                with:
+                    OrganizationName: "mwo-project"
+                    PAT: "PAT"
+                    ProjectName: "mwo-lab5"
+                    AreaPath: "mwo-lab5\\Automation"
+                    IterationPath: "mwo-lab5"
+                    GithubToken: "GithubToken"
+                    WorkflowFileName: "main.yml"
+                env:
+                    PAT: ${{secrets.PAT}}
+                    GithubToken: ${{secrets.API_GITHUB_SECRET}}
