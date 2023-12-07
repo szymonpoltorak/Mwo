@@ -22,7 +22,7 @@ public class RegisterPage {
     private WebElement txtName;
     @FindBy(xpath = "//*[@id=\"mat-input-3\"]")
     private WebElement txtSurname;
-    @FindBy(xpath = "/html/body/app-root/app-register/div/form/app-email-field/mat-form-field/div[1]/div[2]/div/input")
+    @FindBy(xpath = "//*[@id=\"mat-input-4\"]")
     private WebElement txtEmail;
     @FindBy(xpath = "//*[@id=\"mat-input-5\"]")
     private WebElement txtPassword;
