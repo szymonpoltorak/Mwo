@@ -42,7 +42,7 @@ class RegisterPageSeleniumTests {
     @BeforeEach
     final void setup() {
         driver = new ChromeDriver(chromeOptions);
-        driver.navigate().to("http://localhost:4200");
+        driver.navigate().to("http://localhost:4200/auth/register");
         registerPage = new RegisterPage(driver);
     }
 
