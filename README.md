@@ -116,7 +116,33 @@ Wynik działania powyższego action:
 
 ## Tworzenie ToDo za pomocą github actions na AzureDevOps
 
-Żeby wykonać ten pipeline potrzebne jest wygenerowanie tokenów w Github i AzureDevOps.
+Żeby wykonać ten pipeline potrzebne jest wygenerowanie tokenów w Github i AzureDevOps. Do realizacji projektu utworzyłem nowy projekt.
+
+<div alignment="center">
+    <img src="docs/9.png">
+</div>
+
+Musiałem także wygenerować tokeny dla Githuba, oraz Azure'a.
+
+Token dla azure'a:
+
+<div alignment="center">
+    <img src="docs/10.png">
+</div>
+
+Token dla githuba:
+
+<div alignment="center">
+    <img src="docs/11.png">
+</div>
+
+Następnie umieściłem je w zmiennych repozytorium:
+
+<div alignment="center">
+    <img src="docs/12.png">
+</div>
+
+Poniżej przedstawiam kod pipeline'u, który uzwględnia integrację z AzureDevOps.
 
 ```yml
 name: Studies project CI/CD integrated with azdo
@@ -189,14 +215,14 @@ jobs:
                uses: stefanstranger/azuredevops-bug-action@1.1
                if: failure()
                with:
-                   OrganizationName: "final-project-mwo"
+                   OrganizationName: "mwo-project"
                    PAT: "PAT"
-                   ProjectName: "mwo-project"
-                   AreaPath: "mwo-project\\Automation"
-                   IterationPath: "mwo-project"
+                   ProjectName: "mwo-lab5"
+                   AreaPath: "mwo-lab5\\Automation"
+                   IterationPath: "mwo-lab5"
                    GithubToken: "GithubToken"
                    WorkflowFileName: "main.yml"
                env:
                    PAT: ${{secrets.PAT}}
-                   GithubToken: ${{secrets.GITHUBRESTAPISECRET}}
+                   GithubToken: ${{secrets.API_GITHUB_SECRET}}
 ```
